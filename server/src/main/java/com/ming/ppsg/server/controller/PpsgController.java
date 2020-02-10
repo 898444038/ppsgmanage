@@ -4,10 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class PpsgController {
 
-    @RequestMapping("/hello")
-    public String hello() {
-        return "hello consul.";
+    @RequestMapping("/list")
+    public String list() {
+        return "list,list,list,list,list,list,list,list";
     }
+
 }

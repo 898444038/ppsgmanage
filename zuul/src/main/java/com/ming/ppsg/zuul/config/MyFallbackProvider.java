@@ -12,6 +12,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * 路由熔断
+ */
 @Component
 public class MyFallbackProvider implements FallbackProvider {
 

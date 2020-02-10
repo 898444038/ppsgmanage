@@ -20,17 +20,20 @@ public class MyFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        return "pre"; // 定义filter的类型，有pre、route、post、error四种
+        // 定义filter的类型，有pre、route、post、error四种
+        return "pre";
     }
 
     @Override
     public int filterOrder() {
-        return 0; // 定义filter的顺序，数字越小表示顺序越高，越先执行
+        // 定义filter的顺序，数字越小表示顺序越高，越先执行
+        return 0;
     }
 
     @Override
     public boolean shouldFilter() {
-        return true; // 表示是否需要执行该filter，true表示执行，false表示不执行
+        // 表示是否需要执行该filter，true表示执行，false表示不执行
+        return true;
     }
 
     @Override
@@ -40,7 +43,7 @@ public class MyFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         String token = request.getParameter("token");
         System.out.println(token);
-        if(token==null){
+        /*if(token==null){
             log.warn("there is no request token");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
@@ -50,7 +53,7 @@ public class MyFilter extends ZuulFilter {
                 e.printStackTrace();
             }
             return null;
-        }
+        }*/
         log.info("ok");
         return null;
     }

@@ -1,6 +1,5 @@
-
 server:
-  port: 8541
+  port: 8080
 spring:
   application:
     name: ppsg-zuul
@@ -20,8 +19,22 @@ zuul:
 #  prefix: /v1
   routes:
     ribbon:
-      path: /ribbon/**
+      path: /auth/**
       serviceId: ppsg-client
     feign:
-      path: /feign/**
+      path: /admin/**
       serviceId: ppsg-client
+#    auth:
+#      path: /auth/**
+#      serviceId: ppsg-client
+#      sensitiveHeaders: Cookie,Set-Cookie
+#      stripPrefix: false
+#    admin:
+#      path: /admin/**
+#      serviceId: ppsg-client
+#    user:
+#      path: /user/**
+#      serviceId: ppsg-client
+#    guest:
+#      path: /guest/**
+#      serviceId: ppsg-client
