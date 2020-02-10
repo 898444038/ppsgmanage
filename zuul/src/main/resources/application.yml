@@ -1,0 +1,27 @@
+
+server:
+  port: 8541
+spring:
+  application:
+    name: ppsg-zuul
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}
+zuul:
+#  prefix: /v1
+  routes:
+    ribbon:
+      path: /ribbon/**
+      serviceId: ppsg-client
+    feign:
+      path: /feign/**
+      serviceId: ppsg-client

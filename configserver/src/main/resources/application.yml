@@ -1,0 +1,22 @@
+
+server:
+  port: 8551
+spring:
+  application:
+    name: ppsg-config-server
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}
+    config:
+      server:
+        git:
+          uri: https://github.com/898444038/config-reposity.git
+          username: 898444038@qq.com
+          password: wjmisxld12345
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:/properties/

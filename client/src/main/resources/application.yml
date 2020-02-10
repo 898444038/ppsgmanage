@@ -1,0 +1,19 @@
+server:
+  port: 8521
+spring:
+  application:
+    name: ppsg-client
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true    #设置不需要注册到 consul 中
+        serviceName: ${spring.application.name}	# 注册到consul的服务名称
+service-producer:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+#开启熔断器
+feign:
+  hystrix:
+    enabled: true
