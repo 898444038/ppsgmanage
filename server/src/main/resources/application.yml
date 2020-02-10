@@ -2,10 +2,31 @@ server:
   port: 8511
 spring:
   datasource:
-    username: root
-    password:
-    url: jdbc:mysql://localhost:3306/ppsg?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.jdbc.Driver
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/ppsg2?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+      username: root
+      password:
+      filters: stat,wall,log4j,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+#    username: root
+#    password:
+#    url: jdbc:mysql://localhost:3306/ppsg2?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#    driver-class-name: com.mysql.jdbc.Driver
   servlet:
     multipart:
       max-file-size: 10
@@ -21,3 +42,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.ming.ppsg.server.entity
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
