@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -100,7 +101,10 @@ public class SysLoginController {
 
 		// 系统登录认证
 		JwtAuthenticatioToken token = SecurityUtils.login(request, username, password, authenticationManager);
-		return HttpResult.ok(token.getToken());
+		Map<String,Object> maps = new HashMap<>();
+		maps.put("user",user);
+		maps.put("token",token.getToken());
+		return HttpResult.ok(maps);
 	}
 
 }

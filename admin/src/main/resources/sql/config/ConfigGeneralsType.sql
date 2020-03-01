@@ -1,0 +1,10 @@
+CREATE TABLE `p_config_generals_type` (
+`id` BIGINT(20)  NOT NULL AUTO_INCREMENT ,
+`code` VARCHAR(32)  DEFAULT NULL  COMMENT '',
+`name` VARCHAR(32)  DEFAULT NULL  COMMENT '名称',
+`force_growth` INTEGER(11)  DEFAULT NULL  COMMENT '武力每级成长',
+`intellect_growth` INTEGER(11)  DEFAULT NULL  COMMENT '智力每级成长',
+`troops_growth` INTEGER(11)  DEFAULT NULL  COMMENT '兵力每级成长',
+PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+

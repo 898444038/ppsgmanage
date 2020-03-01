@@ -11,7 +11,6 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.*;
-
 /**
  * JWT工具类
  */
@@ -190,6 +189,8 @@ public class JwtTokenUtils implements Serializable {
      * @return
      */
     public static String getToken(HttpServletRequest request) {
+		System.out.println("请求路径："+request.getRequestURI());
+
     	String token = request.getHeader("Authorization");
         String tokenHead = "Bearer ";
         if(token == null) {
@@ -200,6 +201,7 @@ public class JwtTokenUtils implements Serializable {
         if("".equals(token)) {
         	token = null;
         }
+		System.out.println("请求路径："+request.getRequestURI()+",token："+token);
         return token;
     }
 

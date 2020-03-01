@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ppsg.ppsg.mapper.config.ConfigStarMapper">
+
+	<resultMap id="baseResultMap" type="com.ming.ppsg.ppsg.entity.config.ConfigStar">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="baseColumn">
+		id,
+		code,
+		name
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="code != null">and code = #{code}</if>
+			<if test="name != null">and name = #{name}</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="baseResultMap" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigStar">
+		SELECT <include refid="baseColumn"></include> 
+		from p_config_star
+		<include refid="baseCondition"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigStar">
+		insert into p_config_star
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null">id,</if>
+			<if test="code != null">code,</if>
+			<if test="name != null">name,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id},</if>
+			<if test="code != null">#{code},</if>
+			<if test="name != null">#{name},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigStar">
+		update p_config_star
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="code != null">code = #{code},</if>
+			<if test="name != null">name = #{name},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigStar">
+		delete from p_config_star
+		where id = #{id} 
+	</delete>
+
+</mapper>
+

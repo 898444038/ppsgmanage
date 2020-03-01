@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ppsg.ppsg.mapper.config.ConfigScienceMapper">
+
+	<resultMap id="baseResultMap" type="com.ming.ppsg.ppsg.entity.config.ConfigScience">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="force_rate" property="forceRate" jdbcType="DECIMAL" />
+		<result column="intellect_rate" property="intellectRate" jdbcType="DECIMAL" />
+		<result column="troops_rate" property="troopsRate" jdbcType="DECIMAL" />
+		<result column="self_hurt" property="selfHurt" jdbcType="DECIMAL" />
+		<result column="self_hurt_desc" property="selfHurtDesc" jdbcType="VARCHAR" />
+		<result column="restraint_hurt" property="restraintHurt" jdbcType="DECIMAL" />
+		<result column="restraint_hurt_desc" property="restraintHurtDesc" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="baseColumn">
+		id,
+		level,
+		code,
+		name,
+		force_rate,
+		intellect_rate,
+		troops_rate,
+		self_hurt,
+		self_hurt_desc,
+		restraint_hurt,
+		restraint_hurt_desc
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="level != null">and level = #{level}</if>
+			<if test="code != null">and code = #{code}</if>
+			<if test="name != null">and name = #{name}</if>
+			<if test="forceRate != null">and force_rate = #{forceRate}</if>
+			<if test="intellectRate != null">and intellect_rate = #{intellectRate}</if>
+			<if test="troopsRate != null">and troops_rate = #{troopsRate}</if>
+			<if test="selfHurt != null">and self_hurt = #{selfHurt}</if>
+			<if test="selfHurtDesc != null">and self_hurt_desc = #{selfHurtDesc}</if>
+			<if test="restraintHurt != null">and restraint_hurt = #{restraintHurt}</if>
+			<if test="restraintHurtDesc != null">and restraint_hurt_desc = #{restraintHurtDesc}</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="baseResultMap" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigScience">
+		SELECT <include refid="baseColumn"></include> 
+		from p_config_science
+		<include refid="baseCondition"></include>
+	</select>
+
+	<insert id="insert" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigScience">
+		insert into p_config_science
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null">id,</if>
+			<if test="level != null">level,</if>
+			<if test="code != null">code,</if>
+			<if test="name != null">name,</if>
+			<if test="forceRate != null">force_rate,</if>
+			<if test="intellectRate != null">intellect_rate,</if>
+			<if test="troopsRate != null">troops_rate,</if>
+			<if test="selfHurt != null">self_hurt,</if>
+			<if test="selfHurtDesc != null">self_hurt_desc,</if>
+			<if test="restraintHurt != null">restraint_hurt,</if>
+			<if test="restraintHurtDesc != null">restraint_hurt_desc,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id},</if>
+			<if test="level != null">#{level},</if>
+			<if test="code != null">#{code},</if>
+			<if test="name != null">#{name},</if>
+			<if test="forceRate != null">#{forceRate},</if>
+			<if test="intellectRate != null">#{intellectRate},</if>
+			<if test="troopsRate != null">#{troopsRate},</if>
+			<if test="selfHurt != null">#{selfHurt},</if>
+			<if test="selfHurtDesc != null">#{selfHurtDesc},</if>
+			<if test="restraintHurt != null">#{restraintHurt},</if>
+			<if test="restraintHurtDesc != null">#{restraintHurtDesc},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigScience">
+		update p_config_science
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="level != null">level = #{level},</if>
+			<if test="code != null">code = #{code},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="forceRate != null">force_rate = #{forceRate},</if>
+			<if test="intellectRate != null">intellect_rate = #{intellectRate},</if>
+			<if test="troopsRate != null">troops_rate = #{troopsRate},</if>
+			<if test="selfHurt != null">self_hurt = #{selfHurt},</if>
+			<if test="selfHurtDesc != null">self_hurt_desc = #{selfHurtDesc},</if>
+			<if test="restraintHurt != null">restraint_hurt = #{restraintHurt},</if>
+			<if test="restraintHurtDesc != null">restraint_hurt_desc = #{restraintHurtDesc},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.ming.ppsg.ppsg.entity.config.ConfigScience">
+		delete from p_config_science
+		where id = #{id} 
+	</delete>
+
+</mapper>
+

@@ -30,6 +30,9 @@ zuul:
     admin:
       path: /admin/**
       serviceId: ppsg-admin
+    ppsg:
+      path: /ppsg/**
+      serviceId: ppsg-admin
 #    auth:
 #      path: /auth/**
 #      serviceId: ppsg-client

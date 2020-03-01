@@ -8,6 +8,14 @@ public class HttpResult {
 	private int code = 200;
 	private String msg;
 	private Object data;
+
+	public static HttpResult judge(int code){
+		if(code>0){
+			return ok();
+		}else{
+			return error();
+		}
+	}
 	
 	public static HttpResult error() {
 		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");

@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 /**
  * 自定义Filter
@@ -41,8 +40,9 @@ public class MyFilter extends ZuulFilter {
         // filter需要执行的具体操作
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        String token = request.getParameter("token");
-        System.out.println(token);
+        String token = request.getHeader("Authorization");
+        ctx.addZuulRequestHeader("Authorization",token);
+        log.info("ZUUL MyFilter Token : "+token);
         /*if(token==null){
             log.warn("there is no request token");
             ctx.setSendZuulResponse(false);
@@ -54,7 +54,6 @@ public class MyFilter extends ZuulFilter {
             }
             return null;
         }*/
-        log.info("ok");
         return null;
     }
 }
