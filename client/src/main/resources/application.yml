@@ -12,8 +12,8 @@ spring:
         serviceName: ${spring.application.name}	# 注册到consul的服务名称
 ppsg-server:
   ribbon:
-    ConnectTimeout: 60000
-    ReadTimeout: 60000
+    ConnectTimeout: 6000000
+    ReadTimeout: 6000000
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
 #开启熔断器
 feign:

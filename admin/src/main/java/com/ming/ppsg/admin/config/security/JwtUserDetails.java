@@ -15,6 +15,7 @@ public class JwtUserDetails implements UserDetails {
 	private String username;
     private String password;
     private String salt;
+    private String roleName;
     private Collection<? extends GrantedAuthority> authorities;
 
     JwtUserDetails(String username, String password, String salt, Collection<? extends GrantedAuthority> authorities) {
@@ -68,4 +69,11 @@ public class JwtUserDetails implements UserDetails {
         return true;
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

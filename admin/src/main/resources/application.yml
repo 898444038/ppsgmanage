@@ -12,10 +12,10 @@ spring:
       filters: stat,wall,log4j,config
       max-active: 100
       initial-size: 1
-      max-wait: 60000
+      max-wait: 6000000
       min-idle: 1
-      time-between-eviction-runs-millis: 60000
-      min-evictable-idle-time-millis: 300000
+      time-between-eviction-runs-millis: 6000000
+      min-evictable-idle-time-millis: 3000000
       validation-query: select 'x'
       test-while-idle: true
       test-on-borrow: false

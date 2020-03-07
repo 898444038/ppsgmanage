@@ -1,6 +1,7 @@
 package com.ming.ppsg.admin.utils;
 
 import com.ming.ppsg.admin.config.security.JwtAuthenticatioToken;
+import com.ming.ppsg.admin.config.security.JwtUserDetails;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -75,6 +76,21 @@ public class SecurityUtils {
 			}
 		}
 		return username;
+	}
+
+	/**
+	 * 获取角色名
+	 * @return
+	 */
+	public static String getRoleName(Authentication authentication) {
+		String roleName = null;
+		if(authentication != null) {
+			Object principal = authentication.getPrincipal();
+			if(principal != null && principal instanceof UserDetails) {
+				roleName = ((JwtUserDetails) principal).getRoleName();
+			}
+		}
+		return roleName;
 	}
 	
 	/**

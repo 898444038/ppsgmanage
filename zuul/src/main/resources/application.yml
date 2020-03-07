@@ -20,8 +20,8 @@ zuul:
     host:
       connections: 500
   host:
-    socket-timeout-millis: 60000
-    connect-timeout-millis: 60000
+    socket-timeout-millis: 6000000
+    connect-timeout-millis: 6000000
 #  prefix: /v1
   routes:
     auth:
@@ -57,10 +57,10 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 6000000
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+  ReadTimeout: 6000000
+  ConnectTimeout: 6000000
   MaxAutoRetries: 0
   MaxAutoRetriesNextServer: 1
   eureka:

@@ -30,6 +30,7 @@ public class JwtTokenUtils implements Serializable {
 	 * 权限列表
 	 */
 	private static final String AUTHORITIES = "authorities";
+	private static final String ROLE_NAME = "role";
 	/**
      * 密钥
      */
@@ -46,10 +47,11 @@ public class JwtTokenUtils implements Serializable {
 	 * @return 令牌
 	 */
 	public static String generateToken(Authentication authentication) {
-	    Map<String, Object> claims = new HashMap<>(3);
+	    Map<String, Object> claims = new HashMap<>(4);
 	    claims.put(USERNAME, SecurityUtils.getUsername(authentication));
 	    claims.put(CREATED, new Date());
 	    claims.put(AUTHORITIES, authentication.getAuthorities());
+		claims.put(ROLE_NAME, SecurityUtils.getRoleName(authentication));
 	    return generateToken(claims);
 	}
 
@@ -189,7 +191,7 @@ public class JwtTokenUtils implements Serializable {
      * @return
      */
     public static String getToken(HttpServletRequest request) {
-		System.out.println("请求路径："+request.getRequestURI());
+    	String url = request.getRequestURI();
 
     	String token = request.getHeader("Authorization");
         String tokenHead = "Bearer ";
@@ -201,7 +203,9 @@ public class JwtTokenUtils implements Serializable {
         if("".equals(token)) {
         	token = null;
         }
-		System.out.println("请求路径："+request.getRequestURI()+",token："+token);
+		if(!url.startsWith("/actuator")){
+			System.out.println(System.currentTimeMillis()+" 请求路径："+url+",token："+token);
+		}
         return token;
     }
 
