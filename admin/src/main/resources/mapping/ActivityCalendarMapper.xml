@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ppsg.ppsg.mapper.activity.ActivityCalendarMapper">
+
+	<resultMap id="baseResultMap" type="com.ming.ppsg.ppsg.entity.activity.ActivityCalendar">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="start_date" property="startDate" jdbcType="DATE" />
+		<result column="end_date" property="endDate" jdbcType="DATE" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="expire" property="expire" jdbcType="TINYINT" />
+	</resultMap>
+
+	<sql id="baseColumn">
+		id,
+		start_date,
+		end_date,
+		name,
+		content,
+		expire
+	</sql>
+
+	<sql id="baseCondition">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="startDate != null">and DATE_FORMAT(start_date,'%Y-%m-%d') = DATE_FORMAT(#{startDate},'%Y-%m-%d')</if>
+			<if test="endDate != null">and DATE_FORMAT(end_date,'%Y-%m-%d') = DATE_FORMAT(#{endDate},'%Y-%m-%d')</if>
+			<if test="name != null">and name = #{name}</if>
+			<if test="content != null">and content = #{content}</if>
+			<if test="expire != null">and expire = #{expire}</if>
+		</where>
+	</sql>
+
+	<select id="select" resultMap="baseResultMap" parameterType="com.ming.ppsg.ppsg.entity.activity.ActivityCalendar">
+		SELECT <include refid="baseColumn"></include> 
+		from p_activity_calendar
+		<include refid="baseCondition"></include>
+	</select>
+
+	<select id="selectByDate" resultMap="baseResultMap" parameterType="com.ming.ppsg.ppsg.entity.activity.ActivityCalendar">
+		SELECT <include refid="baseColumn"></include>
+		from p_activity_calendar
+		<where>
+			<if test="startDate != null">and DATE_FORMAT(start_date,'%Y-%m-%d') = DATE_FORMAT(#{startDate},'%Y-%m-%d')</if>
+			<if test="endDate != null">and DATE_FORMAT(end_date,'%Y-%m-%d') = DATE_FORMAT(#{endDate},'%Y-%m-%d')</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.ming.ppsg.ppsg.entity.activity.ActivityCalendar">
+		insert into p_activity_calendar
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null">id,</if>
+			<if test="startDate != null">start_date,</if>
+			<if test="endDate != null">end_date,</if>
+			<if test="name != null">name,</if>
+			<if test="content != null">content,</if>
+			<if test="expire != null">expire,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id},</if>
+			<if test="startDate != null">#{startDate},</if>
+			<if test="endDate != null">#{endDate},</if>
+			<if test="name != null">#{name},</if>
+			<if test="content != null">#{content},</if>
+			<if test="expire != null">#{expire},</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.ming.ppsg.ppsg.entity.activity.ActivityCalendar">
+		update p_activity_calendar
+		<set>
+			<if test="id != null">id = #{id},</if>
+			<if test="startDate != null">start_date = #{startDate},</if>
+			<if test="endDate != null">end_date = #{endDate},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="expire != null">expire = #{expire},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.ming.ppsg.ppsg.entity.activity.ActivityCalendar">
+		delete from p_activity_calendar
+		where id = #{id} 
+	</delete>
+
+</mapper>
+

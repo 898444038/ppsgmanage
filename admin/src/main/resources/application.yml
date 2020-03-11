@@ -51,6 +51,8 @@ management:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.ming.ppsg.admin.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 pagehelper:
   helperDialect: mysql
   reasonable: true

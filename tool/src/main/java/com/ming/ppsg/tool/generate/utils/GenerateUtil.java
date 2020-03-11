@@ -133,7 +133,7 @@ public class GenerateUtil {
                 //classField.setJdbcType("INTEGER");
                 classField.setLength("(11)");
             }else if("java.util.Date".equals(typeName)){
-                classField.setJdbcType("TIMESTAMP");
+                classField.setJdbcType("datetime");
                 classField.setLength("");
             }else if("int".equalsIgnoreCase(typeName)){
                 classField.setJdbcType("BIT");
